@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
+const error = require('../utils/error');
 const secret = config.jwt.secret;
 
 function sign(data) {
@@ -16,18 +17,18 @@ const check = {
         console.log(decoded);
 
         if(decoded.id !== owner) {
-            throw new Error('You cant do this!')
+            throw error('You cant do this!', 401);
         }
     }
 }
 
 function getToken(auth) {
     if(!auth) {
-        throw new Error('Token is not contained');
+        throw error('Token is not contained', 401);
     }
 
     if (auth.indexOf('Bearer ') === -1) {
-        throw new Error('Invalid format');
+        throw  error('Invalid format', 401);
     }
 
     let token = auth.replace('Bearer ', '');

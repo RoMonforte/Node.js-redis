@@ -5,5 +5,11 @@ module.exports = {
     jwt: {
         secret: process.env.API_PORT ||  'notasecret!',
     },
+    mysql: {
+        host: process.env.MYSQL_HOST || 'sql9.freemysqlhosting.net',
+        user: process.env.MYSQL_USER || 'sql9581389',
+        password: process.env.MYSQL_PASSWORD || 'd19D3IBFpt', 
+        database: process.env.MYSQL_DB || 'sql9581389',        
+    }
 
 }
