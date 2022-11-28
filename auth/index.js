@@ -21,6 +21,9 @@ const check = {
         if(decoded.id !== owner) {
             throw error('You cant do this!', 401);
         }
+    },
+    logged: function(req,owner) {
+        const decoded = decodeHeader(req);
     }
 }
 

@@ -8,7 +8,8 @@ const Controller = require('./index');
 const router = express.Router();
 
 // Routes
-router.get('/', list)
+router.get('/', list);
+router.post('/follow/:id', secure('follow'), follow)
 router.get('/:id', get);
 router.post('/', upsert);
 router.put('/', secure('update'), upsert);
@@ -39,6 +40,14 @@ function upsert(req, res, next) {
         })
         .catch(next);
     
+}
+
+function follow(req, res, next) {
+    Controller.follow(req.user.id, req.params.id)
+        .then(data => {
+            response.sucess(req, res, data, 201)
+        })
+        .catch(next);
 }
 
 
